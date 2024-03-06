@@ -1,6 +1,6 @@
 #ifndef REGISTERWINDOW_H
 #define REGISTERWINDOW_H
-
+#include "users.h"
 #include <QDialog>
 
 namespace Ui {
@@ -14,6 +14,9 @@ class RegisterWindow : public QDialog
 public:
     explicit RegisterWindow(QWidget *parent = nullptr);
     ~RegisterWindow();
+
+private slots:
+    void on_pushButtonRegister_clicked();
 
 private:
     Ui::RegisterWindow *ui;
