@@ -1,5 +1,6 @@
 #include "welcomewindow.h"
 #include "ui_welcomewindow.h"
+#include "loginwindow.h"
 
 WelcomeWindow::WelcomeWindow(QWidget *parent, QString wUsername, int wAge)
     : QDialog(parent)
@@ -8,7 +9,7 @@ WelcomeWindow::WelcomeWindow(QWidget *parent, QString wUsername, int wAge)
     ui->setupUi(this);
     QString strAge = QString :: number ( wAge );
     ui->labelHello->setText("Hello " + wUsername + " " + strAge);
-    QPixmap pix("C:\\Users\\abdul\\Documents\\CinemaProjectFR\\elmo.gif");
+    QPixmap pix("C:\\Users\\ouail estoyloco\\Documents\\CinemaProject\\elmo.gif");
     int w = ui->labelWelcomePic->width();
     int h = ui->labelWelcomePic->height();
     ui->labelWelcomePic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));

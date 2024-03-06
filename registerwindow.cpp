@@ -24,14 +24,16 @@ RegisterWindow::~RegisterWindow()
 
 void RegisterWindow::on_pushButtonRegister_clicked()
 {
-    QString tempUsername = "", tempPassword= "", tempGender = "", tempaccountType = "", tempFavouriteGenres[6], tempScndPassword= "";
+    QString tempUsername = "", stringYear, stringDay, tempPassword= "", tempGender = "", tempaccountType = "", tempFavouriteGenres[6], tempScndPassword= "";
     int tempAge,favNbr=0;
     //getting the data
     tempScndPassword = ui->lineEditscndPassword->text();
     tempUsername = ui->lineEditUsername->text();
     tempPassword = ui->lineEditPassword->text();
-    if(ui->lineEditYear->text() != "" && ui->lineEditDay->text() != "" ){
-    tempAge = 2024 - (ui->lineEditYear->text()).toInt();
+    stringYear = ui->lineEditYear->text();
+    stringDay = ui->lineEditDay->text();
+    if(stringYear.toInt()){
+    tempAge = 2024 - stringYear.toInt();
     ui->ageError->setVisible(false);
     }else{
         ui->ageError->setVisible(true);
@@ -83,21 +85,21 @@ void RegisterWindow::on_pushButtonRegister_clicked()
     if(tempPassword != tempScndPassword || tempScndPassword.isEmpty()){
         ui->scndPasswordError->setVisible(true);
     }
+    else{
+        ui->scndPasswordError->setVisible(false);
+    }
     //matching usernames
     for(int i =0 ; i<usersCount; i++){
         if(Usernames[i] == tempUsername ){
             ui->usernameError->setVisible(true);
         }
-        if(Age[i] == tempAge){
-            ui->ageError->setVisible(true);
-        }
     }
     //registration
     if(!(ui->usernameError->isVisible() || ui->passwordError->isVisible() || ui->scndPasswordError->isVisible() || ui->radioButtonError->isVisible() || ui->checkboxError->isVisible() || ui->ageError->isVisible())){
-        Usernames [ usersCount ] = tempUsername;
+        Usernames [ usersCount] = tempUsername;
         Passwords[usersCount ] = tempPassword;
         Age[usersCount] = tempAge;
-        usersCount++;;
+        usersCount++;
         this->close();
     }
 

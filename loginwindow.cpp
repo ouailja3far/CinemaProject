@@ -1,5 +1,7 @@
 #include "loginwindow.h"
 #include "ui_loginwindow.h"
+#include "registerwindow.h"
+#include "welcomewindow.h"
 
 LoginWindow::LoginWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -16,26 +18,26 @@ LoginWindow::~LoginWindow()
 
 void LoginWindow::on_pushButtonLogin_clicked()
 {
-    QString usern = "jojo";
-    QString userp = "roro";
-    int age = 9;
     QString edName = ui->lineEditUsername->text();
     QString edPass = ui->lineEditPassword->text();
-
-    if((edName == usern) && (edPass == userp))
+    for(int i=0; i<usersCount; i++){
+    if((edName == Usernames[i]) && (edPass == Passwords[i]))
     {
         hide();
-        WelcomeWindow *welcomeWindow = new WelcomeWindow(this, usern, age);
+        WelcomeWindow *welcomeWindow = new WelcomeWindow(this, Usernames[i], Age[i]);
         welcomeWindow->show();
     }
     else
     {
         ui->labelError->setVisible(true);
     }
+    }
 }
 
 
 void LoginWindow::on_pushButtonRegister_clicked()
 {
-    // show register window
+    hide();
+    RegisterWindow *registerWindow = new RegisterWindow(this);
+    registerWindow->show();
 }
